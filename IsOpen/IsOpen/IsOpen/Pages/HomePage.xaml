@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IsOpen.Pages.HomePage"
+             BackgroundColor="{StaticResource AccentColor1}"
+             Title="IsOpen"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <Label
+        Text="Home Page"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+    </Label>
+</ContentPage>
