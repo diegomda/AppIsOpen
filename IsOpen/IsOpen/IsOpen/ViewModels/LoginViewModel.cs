@@ -23,6 +23,7 @@ namespace IsOpen.ViewModels
         private ApiService apiService;
 
         private DialogService dialogService;
+        private NavigationService navigationService;
 
         private string email;
 
@@ -122,7 +123,7 @@ namespace IsOpen.ViewModels
         {
             apiService = new ApiService();
             dialogService = new DialogService();
-
+            navigationService = new NavigationService();
             IsEnabled = true;
             IsRemembered = true;
 
@@ -194,11 +195,16 @@ namespace IsOpen.ViewModels
                     "Problem ocurred retrieving user information, try latter.");
                 return;
             }
+
+            Email = null;
+            Password = null;
+
             IsRunning = false;
             IsEnabled = true;
             var user = (User)response.Result;
-            await dialogService.ShowMessage("Taraaan!!",
-                string.Format("Welcome: {0}",user.Name));
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.CurrentUser = user;
+            navigationService.SetMainPage("MasterPage");
 
             #endregion
         }

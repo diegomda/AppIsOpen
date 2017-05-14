@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IsOpen.Models;
+using System;
 using System.Collections.ObjectModel;
 
 namespace IsOpen.ViewModels
@@ -8,12 +9,30 @@ namespace IsOpen.ViewModels
         #region Properties
         public LoginViewModel Login { get; set; }
 
+        public User CurrentUser { get; set; }
+
+
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
         #endregion
+        #region Singleton
+        private static MainViewModel instance;
+
+        public static MainViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainViewModel();
+            }
+
+            return instance;
+        }
+        #endregion
+
         #region Constructor
         public MainViewModel()
         {
+            instance = this;
             Login = new LoginViewModel();
             LoadMenu();
         }

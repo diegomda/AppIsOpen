@@ -18,5 +18,17 @@ namespace IsOpen.Models
         public int UserId { get; set; }
         public bool IsActive { get; set; }
         public int Order { get; set; }
+        public string FullLogo
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Logo))
+                {
+                    return "avatar_shield.png";
+                }
+
+                return string.Format("http://isopenbackend.azurewebsites.net{0}", Logo.Substring(1));
+            }
+        }
     }
 }
